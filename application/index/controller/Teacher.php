@@ -30,7 +30,7 @@ class Teacher extends Controller
             return $this->error('plz login first', url('/Login/index'));
         }
 
-        $name = Request::instance()->get('name');
+        $name = input('get.name');
         $pageSize = 5;
         $Teacher = new Mt;
         if($name){

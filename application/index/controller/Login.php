@@ -43,7 +43,7 @@ class Login extends Controller
         if(Mt::logOut()){
             return $this->success('logout success', url('/teacher/index'));
         } else {
-            return $this->error('logout error', url('/teacher/index'))
+            return $this->error('logout error', url('/teacher/index'));
         }
     }
 

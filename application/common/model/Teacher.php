@@ -34,6 +34,17 @@ class Teacher extends Model
         return true;
     }
 
+    static public function isLogin()
+    {
+        $teacherId = ession('teacherId');
+
+        if(isset($teacherId)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public function checkPassword($password)
     {
         if($this->getData('password') === $this::encryptPassword($password)){
