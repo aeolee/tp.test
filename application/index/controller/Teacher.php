@@ -16,20 +16,22 @@ use think\facade\Request;
 
 class Teacher extends Controller
 {
+
+    public function __construt()
+    {
+        parent::__construct();
+
+        if(!Mt::isLogin()){
+            return $this->error('plz login first', url('/Login/index'));
+        }
+    }
+
     /**
      * 
      * @route('teacher/index$')
      */
     public function index()
     { 
-
-        //验证用户是否登录
-        $teacherId = session('teacherId');
-        if($teacherId === null)
-        {
-            return $this->error('plz login first', url('/Login/index'));
-        }
-
         $name = input('get.name');
         $pageSize = 5;
         $Teacher = new Mt;
