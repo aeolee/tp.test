@@ -14,17 +14,8 @@ use think\facade\Request;
  * 
  */
 
-class Teacher extends Controller
+class Teacher extends Index
 {
-
-    public function __construt()
-    {
-        parent::__construct();
-
-        if(!Mt::isLogin()){
-            return $this->error('plz login first', url('/Login/index'));
-        }
-    }
 
     /**
      * 

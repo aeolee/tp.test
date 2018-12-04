@@ -1,20 +1,19 @@
 <?php
 namespace app\index\controller;
-use think\Db;
+
+use think\Controller;
+use app\common\model\Teacher as Mt;
+
 
 class Index
 {
-    public function index()
+    public function __construct()
     {
-        var_dump(Db::name('teacher')->find());
-    }
+        parent::__construct();
 
-    /**
-     * 
-     * @route('hello')
-     */
-    public function hello($name = 'ThinkPHP5')
-    {
-        return 'hello,' . $name;
+        if(!Teacher::isLogin()){
+            return $this->error('plz login first', url('/Login/index'));
+        }
+
     }
 }
