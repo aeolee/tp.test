@@ -5,13 +5,13 @@ use think\Controller;
 use app\common\model\Teacher as Mt;
 
 
-class Index
+class Index extends Controller
 {
     public function __construct()
     {
         parent::__construct();
 
-        if(!Teacher::isLogin()){
+        if(!Mt::isLogin()){
             return $this->error('plz login first', url('/Login/index'));
         }
 

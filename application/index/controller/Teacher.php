@@ -32,8 +32,7 @@ class Teacher extends Index
             $teachers = $Teacher->paginate($pageSize, false, ['query'=>['name' => $name,],]);
         }  
             
-        $this->assign('teachers',$teachers);
-            
+        $this->assign('teachers',$teachers);  
         $htmls = $this->fetch();
         return $htmls;
     }

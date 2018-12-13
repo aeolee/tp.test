@@ -36,7 +36,7 @@ class Teacher extends Model
 
     static public function isLogin()
     {
-        $teacherId = ession('teacherId');
+        $teacherId = session('teacherId');
 
         if(isset($teacherId)){
             return true;
