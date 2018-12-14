@@ -59,7 +59,10 @@ class Klass extends Index
         return $this->success('操作成功',url('/klass/index'));
     }
 
-    
+    /**
+     * @param int $id
+     * @route('klass/edit/:id$','get')->ext('html')->pattern('id','\d+')
+     */
     public function edit()
     {
         $id = Request::instance()->param('id/d');
@@ -74,6 +77,44 @@ class Klass extends Index
 
         $this->assign('Klass',$Klass);
         return $this->fetch();
+    }
+
+    /**
+     * 
+     * @param int $id
+     * @route('klass/delete/:id$','get')->ext('html')->pattern('id','\d+')
+     */
+    public function delete()
+    {
+        try{
+            $message = '';
+            $id = Request::instance()->param('id/d');
+            
+            if(is_null($id) || 0 === $id){
+                throw new \Exception("未取得ID信息", 1);
+            }
+            
+            $Klass = Ks::get($id);
+            
+            var_dump($Klass);
+            return; 
+            
+            if(is_null($klass)){
+                throw new \Exception('不存在ID为'.$id.'的班级,删除失败',1);
+            }
+            
+            if(!$klass->delete()){
+                $message = '删除班级信息失败';
+            }
+            
+            return $this->success('删除成功', url('/teacher/index'));
+        } catch(\think\Exception\HttpResponseException $e){
+            throw $e;
+        } catch(\Exception $e){
+            return $e->getMessage();
+        }
+
+        return $this->error($mesage);
     }
 
     /**
